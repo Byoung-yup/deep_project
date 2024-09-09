@@ -16,7 +16,7 @@ export const getUser = async (token) => {
 
 export const register = async (userInfo) => {
   const { email, password, nickname } = userInfo;
-  console.log(userInfo);
+
   try {
     const response = await axiosAuthInstance.post("/register", {
       id: email,
@@ -27,5 +27,20 @@ export const register = async (userInfo) => {
     return response.data;
   } catch (error) {
     console.log("register Error", error);
+  }
+};
+
+export const signIn = async (userInfo) => {
+  const { email, password } = userInfo;
+
+  try {
+    const response = await axiosAuthInstance.post("/login", {
+      id: email,
+      password,
+    });
+
+    return response.data;
+  } catch (error) {
+    console.log("login Error", error);
   }
 };
