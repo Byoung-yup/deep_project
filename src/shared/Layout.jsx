@@ -3,9 +3,11 @@ import Navibar from "../Navibar";
 
 const Layout = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col mt-20">
       <Navibar />
-      <Outlet />
+      <main>
+        <Outlet />
+      </main>
       <footer></footer>
     </div>
   );
