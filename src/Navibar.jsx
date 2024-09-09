@@ -17,8 +17,12 @@ const Navibar = () => {
 
   const executeAuthService = async () => {
     const token = await getItem("accessToken");
-    const { id, nickname } = await getUser(token);
-    login({ id, nickname });
+
+    token &&
+      (async () => {
+        const { id, nickname } = await getUser(token);
+        login({ id, nickname });
+      })();
   };
 
   const handleSignOut = async () => {
