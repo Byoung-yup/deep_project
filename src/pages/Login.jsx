@@ -24,7 +24,7 @@ const Login = () => {
 
   const handleSignIn = async () => {
     const data = await signIn(userInfo);
-    console.log(data);
+
     const { userId, nickname, accessToken } = data;
 
     await setItem("accessToken", accessToken);
