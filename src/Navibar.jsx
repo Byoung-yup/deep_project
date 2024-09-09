@@ -7,40 +7,37 @@ import { useNavigate } from "react-router-dom";
 import { getUser } from "./api/auth/authAPI";
 
 const Navibar = () => {
-  const { isAuthenticated } = useUserStore((state) => state.user);
-  const { login, logout } = useUserStore((state) => ({
+  const { isAuthenticated, login, logout } = useUserStore((state) => ({
+    isAuthenticated: state.user.isAuthenticated,
     login: state.login,
     logout: state.logout,
   }));
+
   const navigate = useNavigate();
   const { getItem, removeItem } = useAuthStorage();
 
-  const executeAuthService = async () => {
-    const token = await getItem("accessToken");
-
-    token &&
-      (async () => {
+  useEffect(() => {
+    const executeAuthService = async () => {
+      const token = await getItem("accessToken");
+      if (token) {
         const { id, nickname } = await getUser(token);
         login({ id, nickname });
-      })();
-  };
-
-  const handleSignOut = async () => {
-    await removeItem("accessToken");
-    logout();
-  };
-
-  useEffect(() => {
+      }
+    };
     executeAuthService();
   }, []);
 
-  const navigateToSignup = useCallback(() => {
-    navigate("/register");
+  const handleSignOut = useCallback(async () => {
+    await removeItem("accessToken");
+    logout();
   }, []);
 
-  const navigateToSignIn = useCallback(() => {
-    navigate("/login");
-  }, []);
+  const handleNavigation = useCallback(
+    (path) => () => {
+      navigate(path);
+    },
+    [navigate]
+  );
 
   return (
     <nav className="fixed top-0 left-0 w-full h-16 bg-white shadow-md flex justify-center">
@@ -73,8 +70,8 @@ const Navibar = () => {
             <Button onClick={handleSignOut}>로그아웃</Button>
           ) : (
             <>
-              <Button onClick={navigateToSignIn}>로그인</Button>
-              <Button onClick={navigateToSignup}>회원가입</Button>
+              <Button onClick={handleNavigation("/login")}>로그인</Button>
+              <Button onClick={handleNavigation("/register")}>회원가입</Button>
             </>
           )}
         </div>
