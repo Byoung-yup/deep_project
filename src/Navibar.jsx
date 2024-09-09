@@ -18,6 +18,10 @@ const Navibar = () => {
     navigate("/register");
   }, []);
 
+  const navigateToSignIn = useCallback(() => {
+    navigate("/login");
+  }, []);
+
   return (
     <nav className="fixed top-0 left-0 w-full h-16 bg-white shadow-md flex justify-center">
       <div className="flex h-full w-5/6 justify-between items-center">
@@ -49,7 +53,7 @@ const Navibar = () => {
             <Button>로그아웃</Button>
           ) : (
             <>
-              <Button>로그인</Button>
+              <Button onClick={navigateToSignIn}>로그인</Button>
               <Button onClick={navigateToSignup}>회원가입</Button>
             </>
           )}
