@@ -4,15 +4,31 @@ import useUserStore from "./store/useUserStore";
 import { useCallback, useEffect } from "react";
 import useAuthStorage from "./hooks/useAuthStorage";
 import { useNavigate } from "react-router-dom";
+import { getUser } from "./api/auth/authAPI";
 
 const Navibar = () => {
-  const isAuthenticated = useUserStore((state) => state.user.isAuthenticated);
+  const { isAuthenticated } = useUserStore((state) => state.user);
+  const { login, logout } = useUserStore((state) => ({
+    login: state.login,
+    logout: state.logout,
+  }));
   const navigate = useNavigate();
-  const { getItem } = useAuthStorage();
+  const { getItem, removeItem } = useAuthStorage();
 
-  //   useEffect(() => {
-  //     const token = getItem("accessToken");
-  //   }, []);
+  const executeAuthService = async () => {
+    const token = await getItem("accessToken");
+    const { id, nickname } = await getUser(token);
+    login({ id, nickname });
+  };
+
+  const handleSignOut = async () => {
+    await removeItem("accessToken");
+    logout();
+  };
+
+  useEffect(() => {
+    executeAuthService();
+  }, []);
 
   const navigateToSignup = useCallback(() => {
     navigate("/register");
@@ -50,7 +66,7 @@ const Navibar = () => {
         </div>
         <div className="flex items-center gap-3">
           {isAuthenticated ? (
-            <Button>로그아웃</Button>
+            <Button onClick={handleSignOut}>로그아웃</Button>
           ) : (
             <>
               <Button onClick={navigateToSignIn}>로그인</Button>

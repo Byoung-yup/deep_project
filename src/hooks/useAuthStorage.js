@@ -5,7 +5,7 @@ const useAuthStorage = () => {
     localStorage.setItem(key, JSON.stringify(value));
   }, []);
 
-  const getItem = useCallback((key) => {
+  const getItem = useCallback(async (key) => {
     const item = localStorage.getItem(key);
     return item ? JSON.parse(item) : null;
   }, []);

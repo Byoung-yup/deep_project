@@ -15,13 +15,14 @@ const useUserStore = create((set) => ({
       },
     })),
 
-  logout: set((state) => ({
-    user: {
-      isAuthenticated: false,
-      userId: "",
-      nickname: "",
-    },
-  })),
+  logout: () =>
+    set((state) => ({
+      user: {
+        isAuthenticated: false,
+        userId: "",
+        nickname: "",
+      },
+    })),
 }));
 
 export default useUserStore;
