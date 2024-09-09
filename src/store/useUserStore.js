@@ -18,7 +18,8 @@ const useUserStore = create((set) => ({
   logout: set((state) => ({
     user: {
       isAuthenticated: false,
-      ...state.user,
+      userId: "",
+      nickname: "",
     },
   })),
 }));
