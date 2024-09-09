@@ -1,16 +1,21 @@
 import { Link } from "react-router-dom";
 import Button from "./common/Button";
 import useUserStore from "./store/useUserStore";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import useAuthStorage from "./hooks/useAuthStorage";
+import { useNavigate } from "react-router-dom";
 
 const Navibar = () => {
   const isAuthenticated = useUserStore((state) => state.user.isAuthenticated);
-  const login = useUserStore((state) => state.login);
+  const navigate = useNavigate();
   const { getItem } = useAuthStorage();
 
-  useEffect(() => {
-    const token = getItem("accessToken");
+  //   useEffect(() => {
+  //     const token = getItem("accessToken");
+  //   }, []);
+
+  const navigateToSignup = useCallback(() => {
+    navigate("/register");
   }, []);
 
   return (
@@ -45,7 +50,7 @@ const Navibar = () => {
           ) : (
             <>
               <Button>로그인</Button>
-              <Button>회원가입</Button>
+              <Button onClick={navigateToSignup}>회원가입</Button>
             </>
           )}
         </div>
