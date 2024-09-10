@@ -30,6 +30,7 @@ const Navibar = () => {
   const handleSignOut = useCallback(async () => {
     await removeItem("accessToken");
     logout();
+    navigate("/");
   }, []);
 
   const handleNavigation = useCallback(

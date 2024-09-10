@@ -23,6 +23,14 @@ const useUserStore = create((set) => ({
         nickname: "",
       },
     })),
+
+  update: (nickname) =>
+    set((state) => ({
+      user: {
+        ...state.user,
+        nickname: nickname,
+      },
+    })),
 }));
 
 export default useUserStore;
