@@ -7,11 +7,12 @@ const useUserStore = create((set) => ({
     nickname: "",
   },
 
-  login: (userInfo) =>
+  login: (id, nickname) =>
     set((state) => ({
       user: {
         isAuthenticated: true,
-        ...userInfo,
+        userId: id,
+        nickname: nickname,
       },
     })),
 
