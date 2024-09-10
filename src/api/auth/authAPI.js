@@ -7,7 +7,7 @@ export const getUser = async (token) => {
         Authorization: `Bearer ${token}`,
       },
     });
-
+    console.log("User: ", response.data);
     return response.data;
   } catch (error) {
     console.log("getUser Error", error);
@@ -42,5 +42,20 @@ export const signIn = async (userInfo) => {
     return response.data;
   } catch (error) {
     console.log("login Error", error);
+  }
+};
+
+export const updateUser = async (formData, token) => {
+  try {
+    const response = await axiosAuthInstance.patch("/profile", formData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.log("updateUser Error", error);
   }
 };
