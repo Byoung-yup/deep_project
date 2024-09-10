@@ -1,7 +1,9 @@
 import axios from "axios";
 
+const BASEURL = import.meta.env.VITE_SERVER_URL;
+
 const axiosMBTIInstance = axios.create({
-  baseURL: "http://localhost:4000/mbti",
+  baseURL: `${BASEURL}/mbti`,
 });
 
 export default axiosMBTIInstance;
