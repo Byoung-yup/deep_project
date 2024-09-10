@@ -52,11 +52,6 @@ const Navibar = () => {
             {isAuthenticated && (
               <>
                 <li>
-                  <Link to="/test" className="text-black hover:text-red-500">
-                    테스트
-                  </Link>
-                </li>
-                <li>
                   <Link to="/result" className="text-black hover:text-red-500">
                     결과보기
                   </Link>
@@ -67,7 +62,10 @@ const Navibar = () => {
         </div>
         <div className="flex items-center gap-3">
           {isAuthenticated ? (
-            <Button onClick={handleSignOut}>로그아웃</Button>
+            <>
+              <Button onClick={handleNavigation("/profile")}>프로필</Button>
+              <Button onClick={handleSignOut}>로그아웃</Button>
+            </>
           ) : (
             <>
               <Button onClick={handleNavigation("/login")}>로그인</Button>
