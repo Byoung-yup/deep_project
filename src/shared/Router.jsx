@@ -6,6 +6,7 @@ import Register from "../pages/Register";
 import Test from "../pages/Test";
 import Result from "../pages/Result";
 import Profile from "../pages/Profile";
+import TestResult from "../pages/TestResult";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
       { path: "test", element: <Test /> },
+      { path: "testresult", element: <TestResult /> },
       { path: "result", element: <Result /> },
       { path: "profile", element: <Profile /> },
     ],

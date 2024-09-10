@@ -21,7 +21,7 @@ const Navibar = () => {
       const token = await getItem("accessToken");
       if (token) {
         const { id, nickname } = await getUser(token);
-        login({ id, nickname });
+        login(id, nickname);
       }
     };
     executeAuthService();
@@ -50,15 +50,11 @@ const Navibar = () => {
                 홈
               </Link>
             </li>
-            {isAuthenticated && (
-              <>
-                <li>
-                  <Link to="/result" className="text-black hover:text-red-500">
-                    결과보기
-                  </Link>
-                </li>
-              </>
-            )}
+            <li>
+              <Link to="/result" className="text-black hover:text-red-500">
+                결과보기
+              </Link>
+            </li>
           </ul>
         </div>
         <div className="flex items-center gap-3">
