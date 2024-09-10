@@ -3,8 +3,8 @@ import Button from "../common/Button";
 
 const TestResult = () => {
   const location = useLocation();
-  const navigate = useNavigate();
   const { state } = location;
+  const navigate = useNavigate();
 
   return (
     <div className="flex w-full justify-center items-center mt-6">
