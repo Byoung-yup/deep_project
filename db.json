@@ -7,6 +7,14 @@
       "result": "ESFJ",
       "date": "2024-09-10T08:13:11.731Z",
       "visibility": true
+    },
+    {
+      "id": "c7eb",
+      "email": "test@naver.com",
+      "nickname": "또변경닉네임",
+      "result": "ESTP",
+      "date": "2024-09-10T10:38:39.899Z",
+      "visibility": true
     }
   ]
 }

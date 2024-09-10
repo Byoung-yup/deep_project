@@ -16,7 +16,6 @@ export const deleteMBTIDATA = async (id) => {
 };
 
 export const updateMBTIDATA = async ({ id, status }) => {
-  console.log(id, status);
   await axiosMBTIInstance.patch(`/${id}`, {
     visibility: !status,
   });
